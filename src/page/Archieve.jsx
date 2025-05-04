@@ -1,9 +1,9 @@
+
 import React,{ useState, useEffect } from 'react'
 import axios from 'axios'
 import deleteButton from '../assets/delete-button-svgrepo-com.svg'
 import doneButton from '../assets/round-done-button-svgrepo-com.svg'
 import Navbar from './Nav'
-import { API_URL } from '../config';
 
 const Archieve = () => {
     const [todos, setTodos] = useState([])
@@ -12,7 +12,7 @@ const Archieve = () => {
     }, [])
 
     const fetchTodos = () => {
-        axios.get(`${API_URL}/get`)
+        axios.get('http://localhost:3000/get')
             .then(result => {
                 setTodos(result.data);
                 console.log("Todos loaded:", result.data);
@@ -27,7 +27,7 @@ const Archieve = () => {
             return;
         }
         
-        axios.put(`${API_URL}/complete/${id}`)
+        axios.put(`http://localhost:3000/complete/${id}`)
             .then(result => {
                 console.log("Complete result:", result.data);
                 fetchTodos();
@@ -42,7 +42,7 @@ const Archieve = () => {
             return;
         }
         
-        axios.delete(`${API_URL}/delete/${id}`)
+        axios.delete(`http://localhost:3000/delete/${id}`)
             .then(result => {
                 console.log("Delete result:", result.data);
                 fetchTodos();
