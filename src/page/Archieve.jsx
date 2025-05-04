@@ -1,18 +1,19 @@
-
 import React,{ useState, useEffect } from 'react'
 import axios from 'axios'
 import deleteButton from '../assets/delete-button-svgrepo-com.svg'
 import doneButton from '../assets/round-done-button-svgrepo-com.svg'
 import Navbar from './Nav'
+import { API_URL } from '../config';
 
 const Archieve = () => {
     const [todos, setTodos] = useState([])
     useEffect(() => {
+        console.log("API_URL:", API_URL); // Check if API_URL is defined correctly
         fetchTodos();
     }, [])
 
     const fetchTodos = () => {
-        axios.get('http://localhost:3000/get')
+        axios.get(`${API_URL}/get`)
             .then(result => {
                 setTodos(result.data);
                 console.log("Todos loaded:", result.data);
@@ -27,7 +28,7 @@ const Archieve = () => {
             return;
         }
         
-        axios.put(`http://localhost:3000/complete/${id}`)
+        axios.put(`${API_URL}/complete/${id}`)
             .then(result => {
                 console.log("Complete result:", result.data);
                 fetchTodos();
@@ -42,7 +43,7 @@ const Archieve = () => {
             return;
         }
         
-        axios.delete(`http://localhost:3000/delete/${id}`)
+        axios.delete(`${API_URL}/delete/${id}`)
             .then(result => {
                 console.log("Delete result:", result.data);
                 fetchTodos();

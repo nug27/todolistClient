@@ -10,6 +10,7 @@ const Input = () => {
     const [task, setTask] = useState('')
 
     useEffect(() => {
+        console.log("API_URL:", API_URL); // Check if API_URL is defined correctly
         fetchTodos();
     }, [])
 
