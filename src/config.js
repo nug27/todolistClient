@@ -4,7 +4,7 @@
 const localApiUrl = 'http://localhost:3000';
 
 // This will be used in production
-const productionApiUrl = 'https://todolist-server-iota.vercel.app/';
+const productionApiUrl = 'https://todolist-server-iota.vercel.app/'; // Notice trailing slash
 
 // Determine which one to use based on the environment
 export const API_URL = import.meta.env.MODE === 'production' 
